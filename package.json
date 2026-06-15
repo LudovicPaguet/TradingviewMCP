@@ -1,11 +1,11 @@
 {
-  "name": "claudeverstradingview",
+  "name": "tradingview-mcp",
   "version": "1.0.0",
-  "description": "Claude vs TradingView — MCP bridge pour TradingView Desktop via Chrome DevTools Protocol",
+  "description": "TradingView MCP — pont vers TradingView Desktop via Chrome DevTools Protocol",
   "type": "module",
   "main": "src/server.js",
   "bin": {
-    "claudeverstradingview": "src/cli/index.js"
+    "tradingview-mcp": "src/cli/index.js"
   },
   "exports": {
     ".": "./src/server.js",

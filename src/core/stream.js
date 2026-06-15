@@ -22,7 +22,7 @@ async function pollLoop(fetcher, { interval = 500, dedupe = true, label = 'strea
 
   // Emit header with compliance notice
   const start = Date.now();
-  process.stderr.write(`\u26A0  ludovic  |  Outil non officiel. Non affilié à TradingView Inc. ou Anthropic.\n`);
+  process.stderr.write(`\u26A0  TradingView MCP  |  Outil non officiel. Non affilié à TradingView Inc. ou Anthropic.\n`);
   process.stderr.write(`   Streams from your locally running TradingView Desktop instance only.\n`);
   process.stderr.write(`   Does not connect to TradingView servers. Requires --remote-debugging-port=9222.\n`);
   process.stderr.write(`   Ensure your usage complies with TradingView's Terms of Use.\n`);

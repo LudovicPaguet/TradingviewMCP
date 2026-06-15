@@ -12,13 +12,13 @@ import * as data from "./data.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = resolve(__dirname, "../../");
-const SESSIONS_DIR = join(homedir(), ".ludovic", "sessions");
+const SESSIONS_DIR = join(homedir(), ".tradingview-mcp", "sessions");
 
 function loadRules(rulesPath) {
   const candidates = [
     rulesPath,
     join(PROJECT_ROOT, "rules.json"),
-    join(homedir(), ".ludovic", "rules.json"),
+    join(homedir(), ".tradingview-mcp", "rules.json"),
   ].filter(Boolean);
 
   for (const p of candidates) {

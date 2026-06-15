@@ -90,7 +90,7 @@ registerMorningTools(server);
 
 // Startup notice (stderr so it doesn't interfere with MCP stdio protocol)
 process.stderr.write(
-  "⚠  ludovic  |  Outil non officiel. Non affilié à TradingView Inc. ou Anthropic.\n",
+  "⚠  TradingView MCP  |  Outil non officiel. Non affilié à TradingView Inc. ou Anthropic.\n",
 );
 process.stderr.write(
   "   Ensure your usage complies with TradingView's Terms of Use.\n\n",

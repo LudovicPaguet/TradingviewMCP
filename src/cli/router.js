@@ -12,7 +12,7 @@ export function register(name, config) {
 }
 
 function printHelp() {
-  console.log('Usage: ludovic <command> [options]\n');
+  console.log('Usage: tradingview-mcp <command> [options]\n');
   console.log('Commands:');
   const maxLen = Math.max(...[...commands.keys()].map(k => k.length));
   for (const [name, cmd] of commands) {
@@ -23,7 +23,7 @@ function printHelp() {
       console.log(`  ${name.padEnd(maxLen + 2)}${cmd.description}`);
     }
   }
-  console.log('\nRun "ludovic <command> --help" for command-specific options.');
+  console.log('\nRun "tradingview-mcp <command> --help" for command-specific options.');
   console.log('\nDISCLAIMER');
   console.log('  Not affiliated with TradingView Inc. or Anthropic, PBC.');
   console.log('  Use subject to TradingView\'s Terms of Use: tradingview.com/policies');
@@ -31,13 +31,13 @@ function printHelp() {
 
 function printCommandHelp(name, cmd) {
   if (cmd.subcommands) {
-    console.log(`Usage: ludovic ${name} <subcommand> [options]\n`);
+    console.log(`Usage: tradingview-mcp ${name} <subcommand> [options]\n`);
     console.log('Subcommands:');
     for (const [sub, subConf] of cmd.subcommands) {
       console.log(`  ${sub.padEnd(12)}${subConf.description}`);
     }
   } else {
-    console.log(`Usage: ludovic ${name} [options]\n`);
+    console.log(`Usage: tradingview-mcp ${name} [options]\n`);
     console.log(cmd.description);
   }
   const opts = cmd.options || {};
@@ -63,7 +63,7 @@ export async function run(argv) {
 
   if (!cmd) {
     console.error(`Unknown command: ${cmdName}`);
-    console.error('Run "ludovic --help" for a list of commands.');
+    console.error('Run "tradingview-mcp --help" for a list of commands.');
     process.exit(1);
   }
 
@@ -92,7 +92,7 @@ export async function run(argv) {
         strict: false,
       });
       if (values.help) {
-        console.log(`Usage: ludovic ${cmdName} ${subName} [options]\n`);
+        console.log(`Usage: tradingview-mcp ${cmdName} ${subName} [options]\n`);
         console.log(sub.description);
         if (Object.keys(options).length > 0) {
           console.log('\nOptions:');

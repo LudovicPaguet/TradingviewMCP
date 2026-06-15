@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * ludovic — CLI pour TradingView Desktop via Chrome DevTools Protocol.
+ * tradingview-mcp — CLI pour TradingView Desktop via Chrome DevTools Protocol.
  * Outputs JSON to stdout. Errors to stderr.
  * Exit codes: 0 success, 1 error, 2 connection failure.
  *

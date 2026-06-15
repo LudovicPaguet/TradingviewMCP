@@ -1,4 +1,4 @@
-# Claude vs TradingView
+# TradingView MCP
 
 > Un pont local entre **Claude** et **TradingView Desktop**. Aucune API tierce, aucune
 > donnée qui sort de ta machine : on parle directement à l'app via le **Chrome DevTools
@@ -60,8 +60,8 @@ et agir dessus**. Ce dépôt empaquette 81 actions de ce type, exposées deux fo
 
 ```bash
 # 1. Récupérer le code
-git clone https://github.com/ludovicPaguet/claudeverstradingview.git ~/claudeverstradingview
-cd ~/claudeverstradingview
+git clone https://github.com/LudovicPaguet/TradingviewMCP.git ~/TradingviewMCP
+cd ~/TradingviewMCP
 
 # 2. Installer les dépendances (3 paquets, zéro build)
 npm install
@@ -80,13 +80,13 @@ scripts\launch_tv_debug.bat           # Windows
 
 > Si TradingView est déjà lancé normalement, ferme-le d'abord : le port de debug ne peut
 > être ouvert qu'au démarrage du processus. Alternative sans script :
-> l'outil `tv_launch` (MCP) ou `claudeverstradingview launch` (CLI) tentent la détection
+> l'outil `tv_launch` (MCP) ou `tradingview-mcp launch` (CLI) tentent la détection
 > et le lancement automatiques.
 
 Vérifie la connexion :
 
 ```bash
-claudeverstradingview status        # attendu : { "cdp_connected": true, ... }
+tradingview-mcp status        # attendu : { "cdp_connected": true, ... }
 ```
 
 ---
@@ -96,7 +96,7 @@ claudeverstradingview status        # attendu : { "cdp_connected": true, ... }
 **Méthode recommandée (Claude Code)** — une seule commande :
 
 ```bash
-claude mcp add claudeverstradingview -- node ~/claudeverstradingview/src/server.js
+claude mcp add tradingview-mcp -- node ~/TradingviewMCP/src/server.js
 ```
 
 **Méthode manuelle** (Claude Desktop ou tout autre client MCP) — ajoute ce bloc à ta
@@ -105,9 +105,9 @@ configuration MCP, en remplaçant le chemin par le tien :
 ```json
 {
   "mcpServers": {
-    "claudeverstradingview": {
+    "tradingview-mcp": {
       "command": "node",
-      "args": ["/chemin/absolu/vers/claudeverstradingview/src/server.js"]
+      "args": ["/chemin/absolu/vers/TradingviewMCP/src/server.js"]
     }
   }
 }
@@ -131,29 +131,29 @@ La CLI couvre les mêmes outils, sans Claude. Chaque commande **émet du JSON su
 `stdout`** — idéal avec `jq`. Codes de sortie : `0` succès, `1` erreur, `2` connexion CDP.
 
 ```bash
-claudeverstradingview brief                 # brief matinal complet
-claudeverstradingview status                # état de la connexion CDP
-claudeverstradingview quote                 # dernier prix / OHLC / volume
-claudeverstradingview state                 # symbole, TF, indicateurs + IDs
-claudeverstradingview symbol BTCUSD         # changer de ticker
-claudeverstradingview timeframe 15          # changer de résolution
-claudeverstradingview ohlcv --summary       # stats compactes des bougies
-claudeverstradingview values                # valeurs des indicateurs visibles
-claudeverstradingview screenshot -r chart   # capture (full | chart | strategy_tester)
-claudeverstradingview pane layout 2x2       # grille 4 graphiques
-claudeverstradingview session get           # dernier brief sauvegardé
+tradingview-mcp brief                 # brief matinal complet
+tradingview-mcp status                # état de la connexion CDP
+tradingview-mcp quote                 # dernier prix / OHLC / volume
+tradingview-mcp state                 # symbole, TF, indicateurs + IDs
+tradingview-mcp symbol BTCUSD         # changer de ticker
+tradingview-mcp timeframe 15          # changer de résolution
+tradingview-mcp ohlcv --summary       # stats compactes des bougies
+tradingview-mcp values                # valeurs des indicateurs visibles
+tradingview-mcp screenshot -r chart   # capture (full | chart | strategy_tester)
+tradingview-mcp pane layout 2x2       # grille 4 graphiques
+tradingview-mcp session get           # dernier brief sauvegardé
 
-claudeverstradingview --help                # liste complète des commandes
-claudeverstradingview <commande> --help     # options d'une commande
+tradingview-mcp --help                # liste complète des commandes
+tradingview-mcp <commande> --help     # options d'une commande
 ```
 
 Exemple de composition avec `jq` :
 
 ```bash
-claudeverstradingview ohlcv --summary | jq '.range, .change_pct'
+tradingview-mcp ohlcv --summary | jq '.range, .change_pct'
 ```
 
-> Sans `npm link`, remplace `claudeverstradingview` par `node src/cli/index.js` ou
+> Sans `npm link`, remplace `tradingview-mcp` par `node src/cli/index.js` ou
 > `npm run tv --`.
 
 ---
@@ -172,7 +172,7 @@ $EDITOR rules.json      # watchlist, critères de biais, règles de risque
 `rules.json` est lu automatiquement par `morning_brief`. Puis, chaque matin :
 
 ```bash
-claudeverstradingview brief
+tradingview-mcp brief
 ```
 
 Claude applique tes règles et produit un tableau du type :
@@ -188,7 +188,7 @@ Global : prudence sur les métaux. BTC le plus solide des trois.
 Garde une trace pour comparer les sessions :
 
 - **Sauvegarder** — `session_save` (ou demande « sauvegarde ce brief »). Écrit dans
-  `~/.ludovic/sessions/AAAA-MM-JJ.json`.
+  `~/.tradingview-mcp/sessions/AAAA-MM-JJ.json`.
 - **Relire** — `session_get` renvoie le brief du jour, sinon celui de la veille.
 
 ---

@@ -25,7 +25,7 @@ export function registerMorningTools(server) {
 
   server.tool(
     "session_save",
-    "Save today's morning brief to ~/.ludovic/sessions/YYYY-MM-DD.json for future reference.",
+    "Save today's morning brief to ~/.tradingview-mcp/sessions/YYYY-MM-DD.json for future reference.",
     {
       brief: z
         .string()

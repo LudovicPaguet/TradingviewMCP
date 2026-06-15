@@ -1,6 +1,6 @@
 /**
- * Public API Ludovic core.
- * Usage: import { chart, data, pine } from 'ludovic/core'
+ * Public API TradingView MCP core.
+ * Usage: import { chart, data, pine } from 'tradingview-mcp/core'
  */
 export * as chart from './chart.js';
 export * as data from './data.js';
